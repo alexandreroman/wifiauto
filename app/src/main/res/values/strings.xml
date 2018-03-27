@@ -12,5 +12,5 @@
     <string name="pref_about_source_code_summary">Show application source code</string>
     <string name="source_code_ref" translatable="false">http://github.com/alexandreroman/wifidisabler</string>
     <string name="software_licenses">Software licenses</string>
-    <string name="info">This application is targeted for Oreo+ devices.\nWhen your device cannot connect to any Wi-Fi network, Wi-Fi is automatically disabled, in order to save battery.</string>
+    <string name="info">When your device cannot connect to any Wi-Fi network, Wi-Fi is automatically disabled, in order to save battery.\nWi-Fi connectivity is periodically checked (every 15 min).</string>
 </resources>

@@ -10,5 +10,5 @@
     <string name="pref_about_source_code">Code source</string>
     <string name="pref_about_source_code_summary">Afficher le code source de cette application</string>
     <string name="software_licenses">Licences des logiciels</string>
-    <string name="info">Cette application est conçue pour les appareils tournant sur Oreo et plus.\nLorsque qu\'aucun réseau Wi-Fi n\'est disponible, le signal Wi-Fi est automatiquement désactivé, afin d\'économiser de la batterie.</string>
+    <string name="info">Lorsque qu\'aucun réseau Wi-Fi n\'est disponible, le signal Wi-Fi est automatiquement désactivé, afin d\'économiser de la batterie.\nLa connectivité Wi-Fi est contrôlée régulièrement (toutes les 15 minutes).</string>
 </resources>
