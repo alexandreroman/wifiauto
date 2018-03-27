@@ -16,9 +16,11 @@
 
 package fr.alexandreroman.wifidisabler
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.preference.Preference
+import android.support.v7.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +34,14 @@ import timber.log.Timber
  * @author Alexandre Roman
  */
 class SettingsFragment : PreferenceFragmentCompatDividers() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Load default preference values.
+        PreferenceManager.setDefaultValues(context, context!!.sharedPreferencesName,
+                Context.MODE_PRIVATE, R.xml.prefs, false)
+    }
+
     override fun onCreatePreferencesFix(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = context!!.sharedPreferencesName
 
