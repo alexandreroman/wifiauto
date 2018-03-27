@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="pref_key_service_enabled"
+        android:summaryOff="@string/pref_service_enabled_summary_off"
+        android:summaryOn="@string/pref_service_enabled_summary"
+        android:title="@string/pref_service_enabled" />
+    <PreferenceCategory android:title="@string/pref_about_category">
+        <Preference
+            android:key="pref_key_about_licenses"
+            android:summary="@string/pref_about_licenses_summary"
+            android:title="@string/pref_about_licenses" />
+        <Preference
+            android:key="pref_key_about_source_code"
+            android:summary="@string/pref_about_source_code_summary"
+            android:title="@string/pref_about_source_code" />
+        <Preference
+            android:key="pref_key_about_version"
+            android:title="@string/pref_about_version" />
+    </PreferenceCategory>
+</PreferenceScreen>

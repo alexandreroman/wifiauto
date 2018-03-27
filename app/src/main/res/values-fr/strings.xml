@@ -1,0 +1,14 @@
+<resources>
+    <string name="pref_service_category">Service</string>
+    <string name="pref_service_enabled">Activer la surveillance du signal Wi-Fi</string>
+    <string name="pref_service_enabled_summary">La connectivité Wi-Fi sera vérifiée</string>
+    <string name="pref_service_enabled_summary_off">Aucune surveillance de la connectivité Wi-Fi</string>
+    <string name="pref_about_category">À propos de cette application</string>
+    <string name="pref_about_version">Version</string>
+    <string name="pref_about_licenses">Licences</string>
+    <string name="pref_about_licenses_summary">Afficher les logiciels inclus dans cette application</string>
+    <string name="pref_about_source_code">Code source</string>
+    <string name="pref_about_source_code_summary">Afficher le code source de cette application</string>
+    <string name="software_licenses">Licences des logiciels</string>
+    <string name="info">Cette application est conçue pour les appareils tournant sur Oreo et plus.\nLorsque qu\'aucun réseau Wi-Fi n\'est disponible, le signal Wi-Fi est automatiquement désactivé, afin d\'économiser de la batterie.</string>
+</resources>
