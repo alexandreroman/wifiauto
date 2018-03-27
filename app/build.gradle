@@ -10,6 +10,7 @@ android {
         applicationId "fr.alexandreroman.wifidisabler"
         minSdkVersion 21
         targetSdkVersion 27
+        resConfigs "en", "fr"
         versionCode gitVersionCodeTime
         versionName gitVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
