@@ -58,7 +58,7 @@ class SettingsFragment : PreferenceFragmentCompatDividers() {
 
     private fun onShowLicenses() {
         Timber.i("Showing software licenses")
-        val licenseIntent = Intent(activity, OssLicensesMenuActivity::class.java)
+        val licenseIntent = Intent(context, OssLicensesMenuActivity::class.java)
         OssLicensesMenuActivity.setActivityTitle(getString(R.string.software_licenses))
         startActivity(licenseIntent)
     }
