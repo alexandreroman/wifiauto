@@ -17,6 +17,7 @@
 package fr.alexandreroman.wifidisabler
 
 import android.app.Application
+import android.os.StrictMode
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
@@ -32,6 +33,18 @@ class MyApp : Application() {
 
         if (BuildConfig.DEBUG) {
             Timber.plant(DebugTree())
+        }
+
+        // Enable StrictMode in debug mode.
+        if (BuildConfig.DEBUG) {
+            StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder()
+                    .detectAll()
+                    .penaltyLog()
+                    .build())
+            StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder()
+                    .detectAll()
+                    .penaltyLog()
+                    .build())
         }
     }
 }
