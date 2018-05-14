@@ -24,7 +24,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
-import androidx.core.content.systemService
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
@@ -61,7 +60,7 @@ class MonitoringService : JobService() {
     }
 
     fun disableWifi() {
-        val wifiMan = systemService<WifiManager>()
+        val wifiMan = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
         if (wifiMan.isWifiEnabled) {
             Timber.i("Disabling Wi-Fi")
             wifiMan.isWifiEnabled = false
@@ -79,17 +78,16 @@ class MonitoringService : JobService() {
             val jobBuilder = JobInfo.Builder(JOB_MONITORING, jobService).apply {
                 setPersisted(true)
                 setPeriodic(TimeUnit.MINUTES.toMillis(15))
-                setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
             }
 
-            val jobScheduler = context.systemService<JobScheduler>()
+            val jobScheduler = context.getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
             jobScheduler.schedule(jobBuilder.build())
         }
 
         @JvmStatic
         fun cancelScheduling(context: Context) {
             Timber.i("Canceling Wi-Fi monitoring schedule")
-            val jobScheduler = context.systemService<JobScheduler>()
+            val jobScheduler = context.getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
             jobScheduler.cancel(JOB_MONITORING)
         }
     }
