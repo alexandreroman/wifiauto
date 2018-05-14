@@ -24,7 +24,7 @@ import android.support.v7.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.net.toUri
+import androidx.core.net.toUri
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompatDividers
 import timber.log.Timber

@@ -24,7 +24,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
-import androidx.content.systemService
+import androidx.core.content.systemService
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
@@ -43,7 +43,7 @@ class MonitoringService : JobService() {
     override fun onStartJob(params: JobParameters?): Boolean {
         Timber.i("Wi-Fi monitoring has started")
 
-        val connManager = systemService<ConnectivityManager>()
+        val connManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetInfo = connManager.activeNetworkInfo
         var connectedToWifi = activeNetInfo?.type == ConnectivityManager.TYPE_WIFI
 
