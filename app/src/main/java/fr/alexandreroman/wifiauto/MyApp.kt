@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package fr.alexandreroman.wifidisabler
+package fr.alexandreroman.wifiauto
 
 import android.app.Application
 import android.os.StrictMode

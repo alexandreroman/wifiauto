@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fr.alexandreroman.wifidisabler.MainActivity">
+    tools:context="fr.alexandreroman.wifiauto.MainActivity">
 
     <LinearLayout
         android:id="@+id/info_block"
@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/info_block"
-        tools:context="fr.alexandreroman.wifidisabler.SettingsFragment">
+        tools:context="fr.alexandreroman.wifiauto.SettingsFragment">
 
     </FrameLayout>
 

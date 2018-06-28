@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package fr.alexandreroman.wifidisabler
+package fr.alexandreroman.wifiauto
 
 import android.app.job.JobInfo
 import android.app.job.JobParameters

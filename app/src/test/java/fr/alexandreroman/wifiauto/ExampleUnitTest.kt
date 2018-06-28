@@ -1,4 +1,4 @@
-package fr.alexandreroman.wifidisabler
+package fr.alexandreroman.wifiauto
 
 import org.junit.Test
 

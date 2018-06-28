@@ -1,4 +1,4 @@
-package fr.alexandreroman.wifidisabler
+package fr.alexandreroman.wifiauto
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("fr.alexandreroman.wifidisabler", appContext.packageName)
+        assertEquals("fr.alexandreroman.wifiauto", appContext.packageName)
     }
 }

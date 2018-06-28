@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package fr.alexandreroman.wifidisabler
+package fr.alexandreroman.wifiauto
 
 import android.content.Context
 import android.content.SharedPreferences
 
 val Context.sharedPreferencesName: String
-    get() = "wifidisabler"
+    get() = "wifiauto"
 
 val Context.sharedPreferences: SharedPreferences
     get() = getSharedPreferences(this.sharedPreferencesName, Context.MODE_PRIVATE)

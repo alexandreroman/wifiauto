@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fr.alexandreroman.wifidisabler">
+    package="fr.alexandreroman.wifiauto">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -13,7 +13,7 @@
         android:required="true" />
 
     <application
-        android:name=".MyApp"
+        android:name="fr.alexandreroman.wifiauto.MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="fr.alexandreroman.wifiauto.MainActivity"
             android:theme="@style/AppTheme.Pref">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,15 +31,15 @@
         </activity>
 
         <service
-            android:name=".SetupService"
+            android:name="fr.alexandreroman.wifiauto.SetupService"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
-            android:name=".MonitoringService"
+            android:name="fr.alexandreroman.wifiauto.MonitoringService"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <receiver android:name=".BootListener">
+        <receiver android:name="fr.alexandreroman.wifiauto.BootListener">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

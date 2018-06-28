@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package fr.alexandreroman.wifidisabler
+package fr.alexandreroman.wifiauto
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

@@ -7,7 +7,7 @@ apply from: "$project.rootDir/tools/script-git-version.gradle"
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "fr.alexandreroman.wifidisabler"
+        applicationId "fr.alexandreroman.wifiauto"
         minSdkVersion 21
         targetSdkVersion 27
         resConfigs "en", "fr"
