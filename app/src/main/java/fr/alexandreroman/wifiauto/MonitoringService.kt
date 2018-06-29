@@ -23,12 +23,13 @@ import android.app.job.JobService
 import android.content.ComponentName
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.net.wifi.WifiManager
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 /**
- * Monitoring service started by JobScheduler.
+ * Monitoring service started by [JobScheduler].
  * @author Alexandre Roman
  */
 class MonitoringService : JobService() {
@@ -40,12 +41,17 @@ class MonitoringService : JobService() {
     override fun onStartJob(params: JobParameters?): Boolean {
         Timber.i("Wi-Fi monitoring has started")
 
+        var connectedToWifi = false
         val connManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetInfo = connManager.activeNetworkInfo
-        var connectedToWifi = activeNetInfo?.type == ConnectivityManager.TYPE_WIFI
-
-        if (connectedToWifi) {
-            connectedToWifi = activeNetInfo.isConnectedOrConnecting
+        for (net in connManager.allNetworks) {
+            val caps = connManager.getNetworkCapabilities(net)
+            if (caps != null && caps.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                val netInfo = connManager.getNetworkInfo(net)
+                if (netInfo != null && netInfo.isConnected) {
+                    connectedToWifi = true
+                    break
+                }
+            }
         }
 
         if (!connectedToWifi) {
@@ -57,7 +63,7 @@ class MonitoringService : JobService() {
         return false
     }
 
-    fun disableWifi() {
+    private fun disableWifi() {
         val wifiMan = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
         if (wifiMan.isWifiEnabled) {
             Timber.i("Disabling Wi-Fi")
