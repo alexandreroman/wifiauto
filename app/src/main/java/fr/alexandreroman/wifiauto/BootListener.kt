@@ -28,11 +28,11 @@ import timber.log.Timber
  */
 class BootListener : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        // This component actually does nothing interesting: yet it seems we need to register
-        // a BroadcastReceiver for this event in order to persist the JobScheduler configuration
-        // across device reboot.
+        // Just in case: make sure the JobScheduler setup is done after
+        // the device has completed boot.
         if (intent?.action.equals(Intent.ACTION_BOOT_COMPLETED)) {
             Timber.d("Received event: ACTION_BOOT_COMPLETED")
+            context?.let { SetupService.setup(it) }
         }
     }
 }
