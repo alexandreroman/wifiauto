@@ -27,8 +27,6 @@ import android.net.wifi.WifiManager
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
-private const val JOB_MONITORING = 42
-
 /**
  * Monitoring service started by JobScheduler.
  * @author Alexandre Roman
@@ -70,6 +68,8 @@ class MonitoringService : JobService() {
     }
 
     companion object {
+        private const val JOB_MONITORING = 42
+
         @JvmStatic
         fun schedule(context: Context) {
             Timber.i("Scheduling Wi-Fi monitoring")

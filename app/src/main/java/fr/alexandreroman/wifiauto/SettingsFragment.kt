@@ -1,11 +1,11 @@
 /*
- * (C) Copyright 2018 Alexandre Roman (http://alexandreroman.fr).
+ * Copyright 2018 Alexandre Roman
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -38,12 +38,13 @@ class SettingsFragment : PreferenceFragmentCompatDividers() {
         super.onCreate(savedInstanceState)
 
         // Load default preference values.
-        PreferenceManager.setDefaultValues(context, context!!.sharedPreferencesName,
+        val ctx = requireContext()
+        PreferenceManager.setDefaultValues(ctx, ctx.sharedPreferencesName,
                 Context.MODE_PRIVATE, R.xml.prefs, false)
     }
 
     override fun onCreatePreferencesFix(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = context!!.sharedPreferencesName
+        preferenceManager.sharedPreferencesName = requireContext().sharedPreferencesName
 
         setPreferencesFromResource(R.xml.prefs, rootKey)
 
@@ -81,14 +82,11 @@ class SettingsFragment : PreferenceFragmentCompatDividers() {
     }
 
     private fun getApplicationVersion(): String {
-        return activity?.packageManager?.getPackageInfo(activity?.packageName, 0)?.versionName
+        return requireActivity().packageManager?.getPackageInfo(activity?.packageName, 0)?.versionName
                 ?: "<dev>"
     }
 
     private fun onToggleMonitoring() {
-        val ctx = context
-        if (ctx != null) {
-            SetupService.setup(ctx)
-        }
+        SetupService.setup(requireContext())
     }
 }

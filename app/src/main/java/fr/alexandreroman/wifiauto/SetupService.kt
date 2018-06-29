@@ -21,9 +21,6 @@ import android.content.Intent
 import android.support.v4.app.JobIntentService
 import timber.log.Timber
 
-private const val ACTION_SETUP = "fr.alexandreroman.wifidisabler.action.SETUP"
-private const val JOB_SETUP = 12
-
 /**
  * Service used to setup Wi-Fi monitoring.
  * @author Alexandre Roman
@@ -53,6 +50,9 @@ class SetupService : JobIntentService() {
     }
 
     companion object {
+        private const val ACTION_SETUP = "fr.alexandreroman.wifiauto.action.SETUP"
+        private const val JOB_SETUP = 12
+
         /**
          * Start this service to setup Wi-Fi monitoring.
          */
