@@ -55,6 +55,13 @@ class SettingsFragment : PreferenceFragmentCompatDividers() {
         preferenceScreen.findPreference("pref_key_about_licenses")
                 .onPreferenceClickListener = Preference.OnPreferenceClickListener { onShowLicenses(); true }
         preferenceScreen.findPreference("pref_key_about_version").summary = getApplicationVersion()
+
+        val eventLogPref = preferenceScreen.findPreference("pref_key_event_log")
+        if (!BuildConfig.DEBUG) {
+            preferenceScreen.removePreference(eventLogPref)
+        } else {
+            eventLogPref.setOnPreferenceClickListener { onEventLog(); true }
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -89,4 +96,6 @@ class SettingsFragment : PreferenceFragmentCompatDividers() {
     private fun onToggleMonitoring() {
         SetupService.setup(requireContext())
     }
+
+    private fun onEventLog() = startActivity(Intent(requireContext(), EventLogActivity::class.java))
 }

@@ -32,7 +32,12 @@ class BootListener : BroadcastReceiver() {
         // the device has completed boot.
         if (intent?.action.equals(Intent.ACTION_BOOT_COMPLETED)) {
             Timber.d("Received event: ACTION_BOOT_COMPLETED")
-            context?.let { SetupService.setup(it) }
+            context?.let {
+                if (BuildConfig.DEBUG) {
+                    EventLog.from(it).append("Device boot completed")
+                }
+                SetupService.setup(it)
+            }
         }
     }
 }

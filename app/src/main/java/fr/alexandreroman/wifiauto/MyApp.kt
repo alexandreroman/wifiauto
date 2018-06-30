@@ -38,6 +38,8 @@ class MyApp : Application() {
         if (BuildConfig.DEBUG) {
             StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder()
                     .detectAll()
+                    .permitDiskReads()
+                    .permitDiskWrites()
                     .penaltyLog()
                     .build())
             StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder()

@@ -38,11 +38,19 @@ class MonitoringService : JobService() {
     }
 
     override fun onStartJob(params: JobParameters?): Boolean {
-        Timber.i("Wi-Fi monitoring has started")
+        Timber.i("Starting Wi-Fi monitoring")
+
+        if (BuildConfig.DEBUG) {
+            EventLog.from(this).append("Monitoring Wi-Fi")
+        }
 
         val wifiMan = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
         if (!wifiMan.isWifiEnabled) {
             Timber.i("Wi-Fi is already disabled")
+
+            if (BuildConfig.DEBUG) {
+                EventLog.from(this).append("Wi-Fi is already disabled")
+            }
         } else {
             // Check if there is a running network using Wi-Fi.
             // At this point, we don't need to check whether this network configuration
@@ -58,8 +66,16 @@ class MonitoringService : JobService() {
                 Timber.i("Wi-Fi is enabled but no active connection has been detected")
                 wifiMan.isWifiEnabled = false
                 Timber.i("Wi-Fi is disabled")
+
+                if (BuildConfig.DEBUG) {
+                    EventLog.from(this).append("Wi-Fi has been disabled")
+                }
             } else {
                 Timber.i("Device is connected via Wi-Fi: keep current settings")
+
+                if (BuildConfig.DEBUG) {
+                    EventLog.from(this).append("Keep Wi-Fi running")
+                }
             }
         }
 

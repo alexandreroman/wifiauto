@@ -6,6 +6,10 @@
         android:summaryOff="@string/pref_service_enabled_summary_off"
         android:summaryOn="@string/pref_service_enabled_summary"
         android:title="@string/pref_service_enabled" />
+    <Preference
+        android:key="pref_key_event_log"
+        android:summary="@string/pref_event_log_summary"
+        android:title="@string/pref_event_log" />
     <PreferenceCategory android:title="@string/pref_about_category">
         <Preference
             android:key="pref_key_about_licenses"

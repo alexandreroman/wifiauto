@@ -11,7 +11,7 @@
         android:required="true" />
 
     <application
-        android:name="fr.alexandreroman.wifiauto.MyApp"
+        android:name=".MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="fr.alexandreroman.wifiauto.MainActivity"
+            android:name=".MainActivity"
             android:theme="@style/AppTheme.Pref">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,19 +29,24 @@
         </activity>
 
         <service
-            android:name="fr.alexandreroman.wifiauto.SetupService"
+            android:name=".SetupService"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
-            android:name="fr.alexandreroman.wifiauto.MonitoringService"
+            android:name=".MonitoringService"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <receiver android:name="fr.alexandreroman.wifiauto.BootListener">
+        <receiver android:name=".BootListener">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name=".EventLogActivity"
+            android:label="@string/event_log"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

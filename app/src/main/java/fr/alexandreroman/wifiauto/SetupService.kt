@@ -42,6 +42,11 @@ class SetupService : JobIntentService() {
         val enabled = sharedPreferences.wifiMonitoringEnabled
         Timber.d("Wi-Fi monitoring is ${if (enabled) "enabled" else "disabled"}")
 
+        if (BuildConfig.DEBUG) {
+            EventLog.from(this).append(
+                    "Setup Wi-Fi monitoring: ${if (enabled) "enabled" else "disabled"}")
+        }
+
         if (enabled) {
             MonitoringService.schedule(this)
         } else {
