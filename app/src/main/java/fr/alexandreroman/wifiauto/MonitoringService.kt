@@ -22,8 +22,7 @@ import android.app.job.JobScheduler
 import android.app.job.JobService
 import android.content.ComponentName
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
+import android.net.wifi.SupplicantState
 import android.net.wifi.WifiManager
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
@@ -41,36 +40,36 @@ class MonitoringService : JobService() {
     override fun onStartJob(params: JobParameters?): Boolean {
         Timber.i("Wi-Fi monitoring has started")
 
-        var connectedToWifi = false
-        val connManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        for (net in connManager.allNetworks) {
-            val caps = connManager.getNetworkCapabilities(net)
-            if (caps != null && caps.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-                val netInfo = connManager.getNetworkInfo(net)
-                if (netInfo != null && netInfo.isConnected) {
-                    connectedToWifi = true
-                    break
-                }
+        val wifiMan = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        if (!wifiMan.isWifiEnabled) {
+            Timber.i("Wi-Fi is already disabled")
+        } else {
+            // Check if there is a running network using Wi-Fi.
+            // At this point, we don't need to check whether this network configuration
+            // provides Internet connectivity or not.
+            // We just want to know if Wi-Fi is enabled on this device for nothing
+            // (ie no network connected).
+            val wifiInfo = wifiMan.connectionInfo
+            val connectedViaWifi = wifiInfo != null
+                    && wifiInfo.networkId != -1
+                    && wifiInfo.supplicantState == SupplicantState.COMPLETED
+
+            if (!connectedViaWifi) {
+                Timber.i("Wi-Fi is enabled but no active connection has been detected")
+                wifiMan.isWifiEnabled = false
+                Timber.i("Wi-Fi is disabled")
+            } else {
+                Timber.i("Device is connected via Wi-Fi: keep current settings")
             }
         }
 
-        if (!connectedToWifi) {
-            disableWifi()
-        } else {
-            Timber.i("Keep current settings: Wi-Fi is still enabled")
-        }
+        // Next line is very important: we need to tell JobScheduler our job is done here,
+        // so that it can safely reschedule this task.
+        jobFinished(params, true)
+
+        Timber.i("Wi-Fi monitoring is done")
 
         return false
-    }
-
-    private fun disableWifi() {
-        val wifiMan = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
-        if (wifiMan.isWifiEnabled) {
-            Timber.i("Disabling Wi-Fi")
-            wifiMan.isWifiEnabled = false
-        } else {
-            Timber.i("Wi-Fi is already disabled")
-        }
     }
 
     companion object {
