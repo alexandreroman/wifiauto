@@ -14,4 +14,5 @@
     <string name="software_licenses">Licences des logiciels</string>
     <string name="info">Lorsque qu\'aucun réseau Wi-Fi n\'est disponible, le signal Wi-Fi est automatiquement désactivé, afin d\'économiser de la batterie.\nLa connectivité Wi-Fi est contrôlée régulièrement (toutes les 15 minutes).</string>
     <string name="event_log">Journal d\'évènements</string>
+    <string name="event_log_reset">Réinitialiser</string>
 </resources>

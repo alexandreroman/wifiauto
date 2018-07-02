@@ -23,9 +23,7 @@ import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
 
 /**
@@ -47,9 +45,26 @@ class EventLogActivity : AppCompatActivity() {
         viewModel.update(this)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_eventlog, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.reset_event_log -> onResetEventLog()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun onResetEventLog() {
+        EventLog.from(this).reset()
+        EventLogViewModel.from(this).update(this)
+    }
+
     private class EventLogAdapter(private var events: MutableList<String> = mutableListOf()) : RecyclerView.Adapter<EventLogAdapter.ViewHolder>() {
-        class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-            val event = view.findViewById<TextView>(R.id.event)
+        class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+            val event = view.findViewById<TextView>(R.id.event)!!
         }
 
         fun update(newEvents: List<String>) {
