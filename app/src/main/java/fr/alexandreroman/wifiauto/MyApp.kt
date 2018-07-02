@@ -18,6 +18,8 @@ package fr.alexandreroman.wifiauto
 
 import android.app.Application
 import android.os.StrictMode
+import androidx.work.Configuration
+import androidx.work.WorkManager
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
@@ -47,5 +49,9 @@ class MyApp : Application() {
                     .penaltyLog()
                     .build())
         }
+
+        Timber.i("Initializing WorkManager")
+        val workManagerConf = Configuration.Builder().build()
+        WorkManager.initialize(this, workManagerConf)
     }
 }

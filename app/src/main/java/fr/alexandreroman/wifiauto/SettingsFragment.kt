@@ -94,7 +94,7 @@ class SettingsFragment : PreferenceFragmentCompatDividers() {
     }
 
     private fun onToggleMonitoring() {
-        SetupService.setup(requireContext())
+        SetupHelper.setup(requireContext())
     }
 
     private fun onEventLog() = startActivity(Intent(requireContext(), EventLogActivity::class.java))

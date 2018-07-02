@@ -16,32 +16,25 @@
 
 package fr.alexandreroman.wifiauto
 
-import android.app.job.JobInfo
-import android.app.job.JobParameters
-import android.app.job.JobScheduler
-import android.app.job.JobService
-import android.content.ComponentName
 import android.content.Context
 import android.net.wifi.SupplicantState
 import android.net.wifi.WifiManager
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
+import androidx.work.Worker
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 /**
- * Monitoring service started by [JobScheduler].
+ * [Worker] implementation monitoring Wi-Fi connectivity.
  * @author Alexandre Roman
  */
-class MonitoringService : JobService() {
-    override fun onStopJob(params: JobParameters?): Boolean {
-        Timber.i("Wi-Fi monitoring has stopped")
-        return false
-    }
-
-    override fun onStartJob(params: JobParameters?): Boolean {
+class MonitoringWorker : Worker() {
+    override fun doWork(): Result {
         Timber.i("Starting Wi-Fi monitoring")
 
         if (BuildConfig.DEBUG) {
-            EventLog.from(this).append("Monitoring Wi-Fi")
+            EventLog.from(applicationContext).append("Monitoring Wi-Fi")
         }
 
         val wifiMan = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
@@ -49,7 +42,7 @@ class MonitoringService : JobService() {
             Timber.i("Wi-Fi is already disabled")
 
             if (BuildConfig.DEBUG) {
-                EventLog.from(this).append("Wi-Fi is already disabled")
+                EventLog.from(applicationContext).append("Wi-Fi is already disabled")
             }
         } else {
             // Check if there is a running network using Wi-Fi.
@@ -68,48 +61,39 @@ class MonitoringService : JobService() {
                 Timber.i("Wi-Fi is disabled")
 
                 if (BuildConfig.DEBUG) {
-                    EventLog.from(this).append("Wi-Fi has been disabled")
+                    EventLog.from(applicationContext).append("Wi-Fi has been disabled")
                 }
             } else {
                 Timber.i("Device is connected via Wi-Fi: keep current settings")
 
                 if (BuildConfig.DEBUG) {
-                    EventLog.from(this).append("Keep Wi-Fi running")
+                    EventLog.from(applicationContext).append("Keep Wi-Fi running")
                 }
             }
         }
 
-        // Next line is very important: we need to tell JobScheduler our job is done here,
-        // so that it can safely reschedule this task.
-        jobFinished(params, true)
-
         Timber.i("Wi-Fi monitoring is done")
 
-        return false
+        return Result.SUCCESS
     }
 
     companion object {
-        private const val JOB_MONITORING = 42
+        private const val MONITORING_TAG = "wifiauto.monitoring"
 
         @JvmStatic
-        fun schedule(context: Context) {
+        fun schedule() {
             Timber.i("Scheduling Wi-Fi monitoring")
-
-            val jobService = ComponentName(context, MonitoringService::class.java)
-            val jobBuilder = JobInfo.Builder(JOB_MONITORING, jobService).apply {
-                setPersisted(true)
-                setPeriodic(TimeUnit.MINUTES.toMillis(15))
-            }
-
-            val jobScheduler = context.getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
-            jobScheduler.schedule(jobBuilder.build())
+            val req = PeriodicWorkRequest.Builder(MonitoringWorker::class.java,
+                    15, TimeUnit.MINUTES)
+                    .addTag(MONITORING_TAG)
+                    .build()
+            WorkManager.getInstance()?.enqueue(req)
         }
 
         @JvmStatic
-        fun cancelScheduling(context: Context) {
+        fun cancelScheduling() {
             Timber.i("Canceling Wi-Fi monitoring schedule")
-            val jobScheduler = context.getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
-            jobScheduler.cancel(JOB_MONITORING)
+            WorkManager.getInstance()?.cancelAllWorkByTag(MONITORING_TAG)
         }
     }
 }
