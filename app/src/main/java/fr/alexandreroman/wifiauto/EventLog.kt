@@ -50,7 +50,7 @@ class EventLog private constructor(
         val writer = FileOutputStream(outputFile, true).bufferedWriter()
         writer.use { it.write(eventStr) }
 
-        if (outputFile.length() > 1024 * 1000) {
+        if (outputFile.length() > 1024 * 128) {
             reset()
         }
     }
