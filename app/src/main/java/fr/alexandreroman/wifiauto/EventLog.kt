@@ -69,6 +69,6 @@ class EventLog private constructor(
      */
     fun reset() {
         Timber.i("Resetting event log")
-        FileOutputStream(outputFile).channel.truncate(0)
+        FileOutputStream(outputFile).use { it.channel.truncate(0) }
     }
 }
