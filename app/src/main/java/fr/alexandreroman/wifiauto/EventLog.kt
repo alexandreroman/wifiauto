@@ -59,6 +59,9 @@ class EventLog private constructor(
      * Read all entries.
      */
     fun readAll(): List<String> {
+        if (!outputFile.exists()) {
+            return emptyList()
+        }
         val events = mutableListOf<String>()
         outputFile.forEachLine { events.add(it) }
         return events
