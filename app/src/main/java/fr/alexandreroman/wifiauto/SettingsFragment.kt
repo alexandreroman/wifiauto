@@ -18,6 +18,7 @@ package fr.alexandreroman.wifiauto
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v7.preference.Preference
 import android.support.v7.preference.PreferenceManager
@@ -33,7 +34,7 @@ import timber.log.Timber
  * Fragment displaying application preferences.
  * @author Alexandre Roman
  */
-class SettingsFragment : PreferenceFragmentCompatDividers() {
+class SettingsFragment : PreferenceFragmentCompatDividers(), SharedPreferences.OnSharedPreferenceChangeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -48,8 +49,6 @@ class SettingsFragment : PreferenceFragmentCompatDividers() {
 
         setPreferencesFromResource(R.xml.prefs, rootKey)
 
-        preferenceScreen.findPreference("pref_key_service_enabled")
-                .onPreferenceClickListener = Preference.OnPreferenceClickListener { onToggleMonitoring(); true }
         preferenceScreen.findPreference("pref_key_about_source_code")
                 .onPreferenceClickListener = Preference.OnPreferenceClickListener { onShowSourceCode(); true }
         preferenceScreen.findPreference("pref_key_about_licenses")
@@ -74,6 +73,16 @@ class SettingsFragment : PreferenceFragmentCompatDividers() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        preferenceScreen.sharedPreferences.registerOnSharedPreferenceChangeListener(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        preferenceScreen.sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
+    }
+
     private fun onShowLicenses() {
         Timber.i("Showing software licenses")
         val licenseIntent = Intent(context, OssLicensesMenuActivity::class.java)
@@ -93,9 +102,23 @@ class SettingsFragment : PreferenceFragmentCompatDividers() {
                 ?: "<dev>"
     }
 
-    private fun onToggleMonitoring() {
-        SetupHelper.setup(requireContext())
+    private fun onToggleMonitoring(enabled: Boolean) {
+        if (BuildConfig.DEBUG) {
+            EventLog.from(requireContext()).append(
+                    "Setup Wi-Fi monitoring: ${if (enabled) "enabled" else "disabled"}")
+        }
+        if (enabled) {
+            MonitoringWorker.schedule()
+        } else {
+            MonitoringWorker.cancelScheduling()
+        }
     }
 
     private fun onEventLog() = startActivity(Intent(requireContext(), EventLogActivity::class.java))
+
+    override fun onSharedPreferenceChanged(pref: SharedPreferences?, key: String?) {
+        when (key) {
+            "pref_key_service_enabled" -> onToggleMonitoring(pref!!.wifiMonitoringEnabled)
+        }
+    }
 }

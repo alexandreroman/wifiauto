@@ -92,7 +92,7 @@ class MonitoringWorker : Worker() {
 
         @JvmStatic
         fun cancelScheduling() {
-            Timber.i("Canceling Wi-Fi monitoring schedule")
+            Timber.i("Canceling Wi-Fi monitoring enable")
             WorkManager.getInstance()?.cancelAllWorkByTag(MONITORING_TAG)
         }
     }

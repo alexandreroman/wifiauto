@@ -30,7 +30,7 @@
         <activity
             android:name=".EventLogActivity"
             android:label="@string/event_log"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
