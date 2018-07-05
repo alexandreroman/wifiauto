@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <uses-feature
         android:name="android.hardware.wifi"
@@ -31,6 +32,19 @@
             android:name=".EventLogActivity"
             android:label="@string/event_log"
             android:parentActivityName=".MainActivity" />
+
+        <receiver
+            android:name=".LocationListener"
+            android:exported="true" />
+        <receiver
+            android:name=".GeofenceListener"
+            android:exported="true" />
+
+        <receiver android:name=".BootListener">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

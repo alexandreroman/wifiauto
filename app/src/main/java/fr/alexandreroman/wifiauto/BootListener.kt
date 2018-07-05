@@ -16,17 +16,19 @@
 
 package fr.alexandreroman.wifiauto
 
+import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.SharedPreferences
+import android.content.Intent
 
-val Context.sharedPreferencesName: String
-    get() = "wifiauto"
-
-val Context.sharedPreferences: SharedPreferences
-    get() = getSharedPreferences(this.sharedPreferencesName, Context.MODE_PRIVATE)
-
-val SharedPreferences.wifiMonitoringEnabled: Boolean
-    get() = getBoolean("pref_key_service_enabled", false)
-
-val SharedPreferences.geofenceEnabled: Boolean
-    get() = getBoolean("pref_key_service_geofence", false)
+/**
+ * [BroadcastReceiver] implementation triggered on device boot.
+ * @author Alexandre Roman
+ */
+class BootListener : BroadcastReceiver() {
+    override fun onReceive(context: Context?, intent: Intent?) {
+        if (BuildConfig.DEBUG) {
+            EventLog.from(context!!).append("Device boot")
+        }
+        GeofenceWorker.reset(context!!)
+    }
+}

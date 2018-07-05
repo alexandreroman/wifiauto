@@ -3,6 +3,9 @@
     <string name="pref_service_enabled">Activer la surveillance du signal Wi-Fi</string>
     <string name="pref_service_enabled_summary">La connectivité Wi-Fi sera vérifiée</string>
     <string name="pref_service_enabled_summary_off">Aucune surveillance de la connectivité Wi-Fi</string>
+    <string name="pref_service_geofence">Activer le signal Wi-Fi à la position actuelle</string>
+    <string name="pref_service_geofence_summary">Le signal Wi-Fi sera automatiquement activé</string>
+    <string name="pref_service_geofence_summary_off">Le signal Wi-Fi ne sera pas activé</string>
     <string name="pref_about_category">À propos de cette application</string>
     <string name="pref_about_version">Version</string>
     <string name="pref_about_licenses">Licences</string>

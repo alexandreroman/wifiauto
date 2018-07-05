@@ -4,6 +4,9 @@
     <string name="pref_service_enabled">Enable Wi-Fi monitoring</string>
     <string name="pref_service_enabled_summary">Wi-Fi connectivity will be checked</string>
     <string name="pref_service_enabled_summary_off">Wi-Fi monitoring is disabled</string>
+    <string name="pref_service_geofence">Enable Wi-Fi at current location</string>
+    <string name="pref_service_geofence_summary">Wi-Fi will automatically be enabled</string>
+    <string name="pref_service_geofence_summary_off">Wi-Fi will not automatically be enabled</string>
     <string name="pref_about_category">About this application</string>
     <string name="pref_about_version">Version</string>
     <string name="pref_about_licenses">Licenses</string>

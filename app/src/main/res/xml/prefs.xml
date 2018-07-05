@@ -6,6 +6,12 @@
         android:summaryOff="@string/pref_service_enabled_summary_off"
         android:summaryOn="@string/pref_service_enabled_summary"
         android:title="@string/pref_service_enabled" />
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="pref_key_service_geofence"
+        android:summaryOff="@string/pref_service_geofence_summary_off"
+        android:summaryOn="@string/pref_service_geofence_summary"
+        android:title="@string/pref_service_geofence" />
     <Preference
         android:key="pref_key_event_log"
         android:summary="@string/pref_event_log_summary"
