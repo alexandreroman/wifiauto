@@ -17,7 +17,7 @@
     <string name="pref_event_log_summary">Show what happened within this app</string>
     <string name="source_code_ref" translatable="false">http://github.com/alexandreroman/wifiauto</string>
     <string name="software_licenses">Software licenses</string>
-    <string name="info">When your device cannot connect to any Wi-Fi network, Wi-Fi is automatically disabled, in order to save battery.\nWi-Fi connectivity is periodically checked (every 15 min).</string>
+    <string name="info">When your device cannot connect to any Wi-Fi network, Wi-Fi is automatically disabled, in order to save battery.</string>
     <string name="event_log">Event log</string>
     <string name="event_log_reset">Reset</string>
 </resources>
