@@ -18,6 +18,7 @@ package fr.alexandreroman.wifiauto
 
 import android.content.Context
 import android.content.SharedPreferences
+import java.util.concurrent.TimeUnit
 
 val Context.sharedPreferencesName: String
     get() = "wifiauto"
@@ -30,3 +31,16 @@ val SharedPreferences.wifiMonitoringEnabled: Boolean
 
 val SharedPreferences.geofenceEnabled: Boolean
     get() = getBoolean("pref_key_service_geofence", false)
+
+fun Context.isWifiGracePeriodEnabled(): Boolean {
+    val ts = this.sharedPreferences.getLong("wifi_reset_timestamp", 0)
+    val now = System.currentTimeMillis()
+    return ts != 0L && now < ts
+}
+
+fun Context.enableWifiGracePeriod() {
+    val ts = System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(15)
+    this.sharedPreferences.edit()
+            .putLong("wifi_reset_timestamp", ts)
+            .apply()
+}

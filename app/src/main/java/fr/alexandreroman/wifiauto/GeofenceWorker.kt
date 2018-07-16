@@ -107,7 +107,7 @@ class GeofenceWorker : Worker() {
 
         @SuppressLint("MissingPermission")
         private fun setupGeofence(context: Context, latitude: Double, longitude: Double) {
-            val radius = 75F
+            val radius = 100F
 
             val geofenceReq = GeofencingRequest.Builder()
                     .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_DWELL)
@@ -115,7 +115,7 @@ class GeofenceWorker : Worker() {
                             Geofence.Builder()
                                     .setCircularRegion(latitude, longitude, radius)
                                     .setLoiteringDelay(1000 * 60 * 2)
-                                    .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_DWELL)
+                                    .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_DWELL or Geofence.GEOFENCE_TRANSITION_ENTER)
                                     .setExpirationDuration(Geofence.NEVER_EXPIRE)
                                     .setRequestId(GEOFENCE_REQ_ID).build()).build()
             val geofenceClient = LocationServices.getGeofencingClient(context)

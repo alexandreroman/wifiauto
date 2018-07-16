@@ -45,6 +45,11 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <service
+            android:name=".MonitoringService"
+            android:exported="false"
+            android:icon="@drawable/baseline_network_check_24" />
     </application>
 
 </manifest>

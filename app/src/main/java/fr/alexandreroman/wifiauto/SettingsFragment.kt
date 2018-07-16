@@ -120,7 +120,7 @@ class SettingsFragment : PreferenceFragmentCompatDividers(), SharedPreferences.O
         if (enabled) {
             MonitoringWorker.schedule()
         } else {
-            MonitoringWorker.cancelScheduling()
+            MonitoringWorker.cancelScheduling(requireContext())
         }
     }
 

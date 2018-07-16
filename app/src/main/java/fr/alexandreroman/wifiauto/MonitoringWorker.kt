@@ -33,6 +33,9 @@ class MonitoringWorker : Worker() {
     override fun doWork(): Result {
         Timber.i("Starting Wi-Fi monitoring")
 
+        // Notify user that Wi-Fi monitoring is enabled.
+        MonitoringService.start(applicationContext)
+
         if (BuildConfig.DEBUG) {
             EventLog.from(applicationContext).append("Monitoring Wi-Fi")
         }
@@ -43,6 +46,12 @@ class MonitoringWorker : Worker() {
 
             if (BuildConfig.DEBUG) {
                 EventLog.from(applicationContext).append("Wi-Fi is already disabled")
+            }
+        } else if (applicationContext.isWifiGracePeriodEnabled()) {
+            Timber.i("Wi-Fi grace period enabled")
+
+            if (BuildConfig.DEBUG) {
+                EventLog.from(applicationContext).append("Wi-Fi grace period enabled")
             }
         } else {
             // Check if there is a running network using Wi-Fi.
@@ -91,9 +100,10 @@ class MonitoringWorker : Worker() {
         }
 
         @JvmStatic
-        fun cancelScheduling() {
+        fun cancelScheduling(context: Context) {
             Timber.i("Canceling Wi-Fi monitoring enable")
             WorkManager.getInstance()?.cancelAllWorkByTag(MONITORING_TAG)
+            MonitoringService.stop(context)
         }
     }
 }

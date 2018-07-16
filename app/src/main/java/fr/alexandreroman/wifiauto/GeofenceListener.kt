@@ -51,6 +51,7 @@ class GeofenceListener : BroadcastReceiver() {
                 EventLog.from(context).append("Wi-Fi enabled within geofence")
             }
             wifiMan.isWifiEnabled = true
+            context.enableWifiGracePeriod()
         } else {
             Timber.i("Wi-Fi already enabled within geofence")
         }

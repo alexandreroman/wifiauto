@@ -20,4 +20,6 @@
     <string name="info">When your device cannot connect to any Wi-Fi network, Wi-Fi is automatically disabled, in order to save battery.</string>
     <string name="event_log">Event log</string>
     <string name="event_log_reset">Reset</string>
+    <string name="notif_channel_monitoring_wifi">Wi-Fi monitoring</string>
+    <string name="service_monitoring_wifi">Monitoring Wi-Fi connectivity</string>
 </resources>

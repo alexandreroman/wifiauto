@@ -18,4 +18,6 @@
     <string name="info">Lorsque qu\'aucun réseau Wi-Fi n\'est disponible, le signal Wi-Fi est automatiquement désactivé, afin d\'économiser de la batterie.</string>
     <string name="event_log">Journal d\'évènements</string>
     <string name="event_log_reset">Réinitialiser</string>
+    <string name="notif_channel_monitoring_wifi">Surveillance du signal Wi-Fi</string>
+    <string name="service_monitoring_wifi">Surveillance du signal Wi-Fi activée</string>
 </resources>
