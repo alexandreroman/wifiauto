@@ -1,0 +1,40 @@
+<!--
+  ~ Copyright 2018 Alexandre Roman
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="108dp"
+        android:height="108dp"
+        android:viewportWidth="5453.425"
+        android:viewportHeight="5453.425">
+    <group android:translateX="736.21234"
+            android:translateY="736.21234">
+      <path
+          android:pathData="m1991,1198c-389,0 -741,158 -995,412l211,212c200,-201 478,-325 784,-325 306,0 583,124 783,325l212,-212c-255,-254 -607,-412 -995,-412z"
+          android:fillColor="#81C7EF"/>
+      <path
+          android:pathData="m1991,1796c-224,0 -426,91 -573,237l212,212c92,-93 220,-150 361,-150 141,0 268,57 360,150l212,-212c-147,-146 -349,-237 -572,-237z"
+          android:fillColor="#0F81B9"/>
+      <path
+          android:pathData="M1991,600C1437,600 936,825 573,1188l211,211c309,-309 735,-500 1207,-500 471,0 897,191 1206,500l211,-211C3045,825 2544,600 1991,600Z"
+          android:fillColor="#CAE9FB"/>
+      <path
+          android:pathData="m1991,3381c438,0 793,-355 793,-793 0,-200 -74,-382 -196,-521l-119,119c91,109 146,249 146,402 0,345 -280,624 -624,624 -345,0 -625,-279 -625,-624 0,-102 24,-198 67,-283l63,48 -34,-245 -245,35 80,60c-63,114 -99,245 -99,385 0,438 355,793 793,793z"
+          android:fillColor="#0F81B9"/>
+      <path
+          android:pathData="m1991,2303v0c21,0 38,17 38,38v223c0,21 -17,38 -38,38v0c-21,0 -39,-17 -39,-38v-223c0,-21 18,-38 39,-38zM1926,2310c-134,29 -235,149 -235,292 0,165 134,299 300,299 165,0 299,-134 299,-299 0,-143 -100,-263 -234,-292 4,9 7,20 7,31v40c95,30 164,119 164,224 0,131 -106,236 -236,236 -131,0 -236,-105 -236,-236 0,-105 68,-194 163,-224v-40c0,-11 3,-22 8,-31z"
+          android:fillColor="#0F81B9"/>
+    </group>
+</vector>

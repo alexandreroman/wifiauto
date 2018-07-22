@@ -26,6 +26,10 @@
             android:summary="@string/pref_about_source_code_summary"
             android:title="@string/pref_about_source_code" />
         <Preference
+            android:key="pref_key_about_icon"
+            android:summary="@string/pref_about_icon_summary"
+            android:title="@string/pref_about_icon" />
+        <Preference
             android:key="pref_key_about_version"
             android:title="@string/pref_about_version" />
     </PreferenceCategory>

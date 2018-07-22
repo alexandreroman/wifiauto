@@ -64,6 +64,8 @@ class SettingsFragment : PreferenceFragmentCompatDividers(), SharedPreferences.O
         preferenceScreen.findPreference("pref_key_about_licenses")
                 .onPreferenceClickListener = Preference.OnPreferenceClickListener { onShowLicenses(); true }
         preferenceScreen.findPreference("pref_key_about_version").summary = getApplicationVersion()
+        preferenceScreen.findPreference("pref_key_about_icon")
+                .onPreferenceClickListener = Preference.OnPreferenceClickListener { onShowIconAuthor(); true }
 
         val eventLogPref = preferenceScreen.findPreference("pref_key_event_log")
         if (!BuildConfig.DEBUG) {
@@ -105,6 +107,12 @@ class SettingsFragment : PreferenceFragmentCompatDividers(), SharedPreferences.O
         val webPageUrl = getString(R.string.source_code_ref)
         val webIntent = Intent(Intent.ACTION_VIEW).setData(webPageUrl.toUri())
         startActivity(webIntent)
+    }
+
+    private fun onShowIconAuthor() {
+        val url = getString(R.string.pref_about_icon_url)
+        val intent = Intent(Intent.ACTION_VIEW).setData(url.toUri())
+        startActivity(intent)
     }
 
     private fun getApplicationVersion(): String {
