@@ -1,0 +1,11 @@
+language: android
+android:
+  components:
+    - android-28
+    - build-tools-27.0.3
+env:
+  global:
+    - ADB_INSTALL_TIMEOUT=8
+script:
+  - chmod +x ./gradlew
+  - ./gradlew clean assembleDebug
