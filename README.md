@@ -2,6 +2,8 @@
 
 # Wi-Fi Auto
 
+[![Build Status](https://travis-ci.org/alexandreroman/wifiauto.svg?branch=master)](https://travis-ci.org/alexandreroman/wifiauto)
+
 This Android app helps you to save battery power by enabling/disabling Wi-Fi automatically.
 
 ## Download this app
